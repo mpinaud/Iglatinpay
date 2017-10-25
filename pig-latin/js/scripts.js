@@ -1,5 +1,6 @@
 var alphaChar = /[A-Za-z]/;
 var vowels = /[aeiouAEIOU]/;
+var letterY = /[yY]/;
 var pigLatinWords = [];
 var pigLatinSentence = [];
 var output;
@@ -14,7 +15,10 @@ var letters = function(word) {
 
 var consonantShift = function(_userLetters) {
   var i = 0;
-  while ((!vowels.test(_userLetters[0])) && i < _userLetters.length) {
+  if (letterY.test(_userLetters[0])) {
+    _userLetters.push(_userLetters.shift());
+  };
+  while ((!vowels.test(_userLetters[0])) && (!letterY.test(_userLetters[0])) && (i <= _userLetters.length)) {
     _userLetters.push(_userLetters.shift());
     i += 1;
   };
