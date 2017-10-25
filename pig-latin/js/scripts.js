@@ -12,26 +12,32 @@ var letters = function(word) {
   return word.split("");
 };
 
-var consonantShift = function(word) {
+var consonantShift = function(_userLetters) {
   var i = 0;
-  while ((!vowels.test(word[0])) && i < word.length) {
-    shiftedWord = word.push(word.shift());
+  while ((!vowels.test(_userLetters[0])) && i < _userLetters.length) {
+    _userLetters.push(_userLetters.shift());
     i += 1;
   };
-  return shiftedWord;
+  return _userLetters;
 };
 
 var iglatinPay = function(userSentence) {
+
   var userWords = words(userSentence);
+
   userWords.forEach(function(word) {
     var userLetters = letters(word);
+
     if (vowels.test(userLetters[0])) {
       userLetters.push("w", "a", "y");
       pigLatinWords = userLetters.join("");
+
     } else if ((alphaChar.test(userLetters[0])) && (!vowels.test(userLetters[0]))) {
-      consonantShift(userLetters);
-      userLetters.push("a", "y");
-      pigLatinWords = userLetters.join("");
+      var shiftedLetters = consonantShift(userLetters);
+      console.log(shiftedLetters);
+      shiftedLetters.push("a", "y");
+      pigLatinWords = shiftedLetters.join("");
+
     } else {
       pigLatinWords = userLetters.join("");
     };
