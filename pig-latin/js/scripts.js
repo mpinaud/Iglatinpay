@@ -43,18 +43,15 @@ var iglatinPay = function(userSentence) {
     if (vowels.test(userLetters[0])) {
       userLetters.push("w", "a", "y");
       pigLatinWords = userLetters.join("");
-
     } else if (userLetters.slice(0, 2).join("").toUpperCase() === "QU" ||
               userLetters.slice(0, 3).join("").toUpperCase() === "SQU") {
       var quLetters = quShift(userLetters);
       quLetters.push("a", "y");
       pigLatinWords = quLetters.join("");
-
     } else if ((alphaChar.test(userLetters[0])) && (!vowels.test(userLetters[0]))) {
       var shiftedLetters = consonantShift(userLetters);
       shiftedLetters.push("a", "y");
       pigLatinWords = shiftedLetters.join("");
-
     } else {
       pigLatinWords = userLetters.join("");
     };
@@ -69,6 +66,6 @@ $(function(){
     event.preventDefault();
     var userInput = $("#user-input").val();
     var pigLatin = iglatinPay(userInput);
-    $("#result").text(pigLatin);
+    $("div#result").text(pigLatin);
   });
 });
