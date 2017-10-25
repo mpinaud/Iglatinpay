@@ -41,6 +41,7 @@ var iglatinPay = function(userSentence) {
 
     } else if (userLetters.slice(0, 2).join("").toUpperCase() === "QU") {
       var quLetters = quShift(userLetters);
+      quLetters.push("a", "y");
       pigLatinWords = quLetters.join("");
 
     } else if ((alphaChar.test(userLetters[0])) && (!vowels.test(userLetters[0]))) {
