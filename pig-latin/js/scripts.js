@@ -1,6 +1,7 @@
 var alphaChar = /[A-Za-z]/;
 var vowels = /[aeiouAEIOU]/;
 var letterY = /[yY]/;
+var letterU = /[uU]/;
 var pigLatinWords = [];
 var pigLatinSentence = [];
 var output;
@@ -26,7 +27,7 @@ var consonantShift = function(_userLetters) {
 };
 
 var quShift = function(_userLetters) {
-  for (i = 0; i < 2; i++) {
+  while (!letterU.test(_userLetters[_userLetters.length - 1])) {
     _userLetters.push(_userLetters.shift());
   };
   return _userLetters;
@@ -43,7 +44,8 @@ var iglatinPay = function(userSentence) {
       userLetters.push("w", "a", "y");
       pigLatinWords = userLetters.join("");
 
-    } else if (userLetters.slice(0, 2).join("").toUpperCase() === "QU") {
+    } else if (userLetters.slice(0, 2).join("").toUpperCase() === "QU" ||
+              userLetters.slice(0, 3).join("").toUpperCase() === "SQU") {
       var quLetters = quShift(userLetters);
       quLetters.push("a", "y");
       pigLatinWords = quLetters.join("");
