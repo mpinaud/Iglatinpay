@@ -21,8 +21,15 @@ var consonantShift = function(_userLetters) {
   return _userLetters;
 };
 
-var iglatinPay = function(userSentence) {
+var quShift = function(_userLetters) {
+  for (i = 0; i < 2; i++) {
+    _userLetters.push(_userLetters.shift());
+  };
+  return _userLetters;
+};
 
+// logic function starts here
+var iglatinPay = function(userSentence) {
   var userWords = words(userSentence);
 
   userWords.forEach(function(word) {
@@ -32,9 +39,12 @@ var iglatinPay = function(userSentence) {
       userLetters.push("w", "a", "y");
       pigLatinWords = userLetters.join("");
 
+    } else if (userLetters.slice(0, 2).join("").toUpperCase() === "QU") {
+      var quLetters = quShift(userLetters);
+      pigLatinWords = quLetters.join("");
+
     } else if ((alphaChar.test(userLetters[0])) && (!vowels.test(userLetters[0]))) {
       var shiftedLetters = consonantShift(userLetters);
-      console.log(shiftedLetters);
       shiftedLetters.push("a", "y");
       pigLatinWords = shiftedLetters.join("");
 
