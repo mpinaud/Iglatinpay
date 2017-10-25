@@ -2,6 +2,7 @@ var alphaChar = /[A-Za-z]/;
 var vowels = /[aeiouAEIOU]/;
 var pigLatinWords = [];
 var pigLatinSentence = [];
+var output;
 
 var words = function(sentence) {
   return sentence.split(" ");
@@ -17,10 +18,13 @@ var iglatinPay = function(userSentence) {
     var userLetters = letters(word);
     if (vowels.test(userLetters[0])) {
       userLetters.push("w", "a", "y");
-      console.log(userLetters);
+      pigLatinWords = userLetters.join("");
+    } else {
+      pigLatinWords = userLetters.join("");
     };
-
+    pigLatinSentence.push(pigLatinWords);
   });
+  return pigLatinSentence.join(" ");
 };
 
 $(function(){
